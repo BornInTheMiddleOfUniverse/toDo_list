@@ -1,9 +1,17 @@
-import {motion} from "framer-motion";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
+import ToDoList from "./ToDoList";
 
 function App() {
+  const isDark = useRecoilValue(isDarkAtom);
   return (
-      <motion.div></motion.div>
-    );
+    <>
+      {/* Date Header*/}
+      {/* Timely Schedule */}
+      <ToDoList />
+      {/* notes */}
+    </>
+  );
 }
 
 export default App;
