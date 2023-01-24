@@ -1,10 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { categoryState, toDoState } from "../atoms";
-
-interface IForm {
-  toDo: string;
-}
+import { IForm } from "../interfaces";
 
 function CreateToDo() {
   const { register, handleSubmit, setValue } = useForm<IForm>();

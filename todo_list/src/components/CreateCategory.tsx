@@ -1,10 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { CategoriesState, categoryState, toDoState } from "../atoms";
-
-interface IForm {
-  category: string;
-}
+import { IForm } from "../interfaces";
 
 function CreateCategory() {
   const { register, handleSubmit, setValue } = useForm<IForm>();
