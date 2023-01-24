@@ -1,15 +1,9 @@
-import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./atoms";
-import ToDoList from "./ToDoList";
+import ToDoList from "./components/ToDoList";
 
 function App() {
-  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
-      {/* Date Header*/}
-      {/* Timely Schedule */}
       <ToDoList />
-      {/* notes */}
     </>
   );
 }
