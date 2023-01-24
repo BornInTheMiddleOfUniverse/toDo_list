@@ -4,7 +4,6 @@ import { CategoriesState, IToDo, toDoState } from "../atoms";
 function ToDo({ text, category, id }: IToDo) {
   const setToDos = useSetRecoilState(toDoState);
   const categories = useRecoilValue(CategoriesState);
-  console.log("categories", categories);
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const {
@@ -29,8 +28,8 @@ function ToDo({ text, category, id }: IToDo) {
     <li>
       <span>{text}</span>
       {categories.map((category: any) => (
-        <button key={category.id} name={category.text} onClick={onClick}>
-          {category.text}
+        <button key={category.id} name={category.category} onClick={onClick}>
+          {category.category}
         </button>
       ))}
     </li>

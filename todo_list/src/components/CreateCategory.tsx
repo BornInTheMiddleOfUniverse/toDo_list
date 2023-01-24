@@ -14,7 +14,7 @@ function CreateCategory() {
     console.log("Adding a Category", category);
     setCategories((oldCategories: any) => {
       const newCategories = [
-        { id: Date.now(), text: category },
+        { id: Date.now(), category: category },
         ...oldCategories,
       ];
       localStorage.setItem("CATEGORY_TITLES", JSON.stringify(newCategories));
