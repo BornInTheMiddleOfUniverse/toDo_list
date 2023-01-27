@@ -1,10 +1,10 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { CategoriesState, toDoState } from "../atoms";
+import { boardsState, toDoState } from "../atoms";
 import { IToDo } from "../interfaces";
 
-function ToDo({ text, category, id }: IToDo) {
+function ToDo({ text, board, id }: IToDo) {
   const setToDos = useSetRecoilState(toDoState);
-  const categories = useRecoilValue(CategoriesState);
+  const boards = useRecoilValue(boardsState);
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const {
@@ -13,7 +13,7 @@ function ToDo({ text, category, id }: IToDo) {
 
     setToDos((oldToDos) => {
       const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
-      const newToDo = { text, id, category: name as any };
+      const newToDo = { text, id, board: name as any };
       const newToDos = [
         ...oldToDos.slice(0, targetIndex),
         newToDo,
@@ -28,9 +28,9 @@ function ToDo({ text, category, id }: IToDo) {
   return (
     <li>
       <span>{text}</span>
-      {categories.map((category: any) => (
-        <button key={category.id} name={category.category} onClick={onClick}>
-          {category.category}
+      {boards.map((board: any) => (
+        <button key={board.id} name={board.board} onClick={onClick}>
+          {board.board}
         </button>
       ))}
     </li>

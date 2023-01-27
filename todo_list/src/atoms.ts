@@ -1,25 +1,25 @@
 import { atom, selector } from "recoil";
-import { ICategory, IGoal, IToDo } from "./interfaces";
+import { IBoard, IGoal, IToDo } from "./interfaces";
 
-//category
+//board
 const defaultCategoreis = JSON.stringify([
-  { id: 1, category: "To Do" },
-  { id: 2, category: "Doing" },
-  { id: 3, category: "Done" },
+  { id: 1, board: "To Do" },
+  { id: 2, board: "Doing" },
+  { id: 3, board: "Done" },
 ]);
 
-const localStorageCategories: string =
-  localStorage.getItem("CATEGORY_TITLES") || defaultCategoreis;
-const parsedLocalStorageCategories = JSON.parse(localStorageCategories);
+const localStorageBoards: string =
+  localStorage.getItem("BOARD_TITLES") || defaultCategoreis;
+export const parsedLocalStorageBoards = JSON.parse(localStorageBoards);
 
-export const CategoriesState = atom({
-  key: "categories",
-  default: parsedLocalStorageCategories,
+export const boardsState = atom({
+  key: "boards",
+  default: parsedLocalStorageBoards,
 });
 
-export const categoryState = atom<ICategory>({
-  key: "category",
-  default: { id: 1, category: "To Do" },
+export const boardState = atom<IBoard>({
+  key: "board",
+  default: { id: 1, board: "To Do" },
 });
 
 //todo
@@ -35,8 +35,8 @@ export const toDoSelector = selector({
   key: "toDoSelector",
   get: ({ get }) => {
     const toDos = get(toDoState);
-    const category = get(categoryState);
-    return toDos.filter((toDo) => toDo.category === category);
+    const board = get(boardState);
+    return toDos.filter((toDo) => toDo.board === board);
   },
 });
 

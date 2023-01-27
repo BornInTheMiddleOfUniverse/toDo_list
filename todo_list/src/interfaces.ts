@@ -5,12 +5,12 @@ export interface IForm {
 export interface IToDo {
   text: string;
   id: number;
-  category: ICategory;
+  board: IBoard;
 }
 
-export interface ICategory {
+export interface IBoard {
   id: number;
-  category: string;
+  board: string;
 }
 
 export interface IGoal {
