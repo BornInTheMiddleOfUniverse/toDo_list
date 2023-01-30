@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import { GoalState } from "../atoms";
 import { IForm } from "../interfaces";
+import { GoalsArea } from "../styles/Goals";
 import SubtitleSvg from "./Svg";
 
 function Goals() {
@@ -17,10 +18,7 @@ function Goals() {
     setValue("goal", "");
   };
   return (
-    <div
-      className=" bg-[#8FCEC8] fill-white	
-    "
-    >
+    <GoalsArea>
       <SubtitleSvg
         text={"This Week's Goals"}
         id={"goals"}
@@ -37,7 +35,7 @@ function Goals() {
         />
         <button>+</button>
       </form>
-    </div>
+    </GoalsArea>
   );
 }
 

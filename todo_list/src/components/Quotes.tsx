@@ -1,8 +1,9 @@
+import { QuotesArea } from "../styles/Quotes";
 import SubtitleSvg from "./Svg";
 
 function Quotes() {
   return (
-    <div className="bg-[#ffc0a9] fill-white	">
+    <QuotesArea>
       <SubtitleSvg
         text={"QUOTE"}
         id={"quote"}
@@ -13,7 +14,7 @@ function Quotes() {
         <div>Talk is cheap. Show me the code.</div>
         <div>Author. hahaha</div>
       </div>
-    </div>
+    </QuotesArea>
   );
 }
 

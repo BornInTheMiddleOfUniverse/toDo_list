@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { boardsState, boardState, toDoState } from "../atoms";
+import { useSetRecoilState } from "recoil";
+import { boardsState } from "../atoms";
 import { IForm } from "../interfaces";
+import { Board } from "../styles/CreateBoard";
 
 function CreateBoard() {
   const { register, handleSubmit, setValue } = useForm<IForm>();
@@ -19,12 +20,12 @@ function CreateBoard() {
   };
 
   return (
-    <div className="absolute right-5 top-5">
+    <Board>
       <form onSubmit={handleSubmit(handleValid)}>
         <input {...register("board")} placeholder="Create new board" />
         <button>+</button>
       </form>
-    </div>
+    </Board>
   );
 }
 
