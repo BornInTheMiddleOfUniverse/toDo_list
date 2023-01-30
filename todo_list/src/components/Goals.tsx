@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import { GoalState } from "../atoms";
 import { IForm } from "../interfaces";
-import { GoalsArea } from "../styles/Goals";
+import { GoalsArea, GoalsBody, GoalsForm } from "../styles/Goals";
 import SubtitleSvg from "./Svg";
 
 function Goals() {
@@ -25,16 +25,17 @@ function Goals() {
         d={"M60,10 Q100,10 190,70 Q340,140 400,0"}
         rotation
       />
-
-      <form onSubmit={handleSubmit(handleValid)}>
-        <input
-          {...register("goal", {
-            required: "Please write a goal.",
-          })}
-          placeholder="Write this week's goal here"
-        />
-        <button>+</button>
-      </form>
+      <GoalsBody>
+        <GoalsForm onSubmit={handleSubmit(handleValid)}>
+          <input
+            className="w-full border-b-4 border-b-white bg-transparent "
+            {...register("goal", {
+              required: "Please write a goal.",
+            })}
+            placeholder="Write this week's goal here"
+          />
+        </GoalsForm>
+      </GoalsBody>
     </GoalsArea>
   );
 }

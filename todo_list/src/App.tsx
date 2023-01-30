@@ -1,13 +1,13 @@
 import Goals from "./components/Goals";
 import Quotes from "./components/Quotes";
-import BoardArea from "./components/BoardArea";
+import MainArea from "./components/MainArea";
 import { BigMain } from "./styles/App";
 
 function App() {
   return (
     <BigMain>
       <Goals />
-      <BoardArea />
+      <MainArea />
       <Quotes />
     </BigMain>
   );

@@ -1,8 +1,9 @@
-import { BoardsArea, Header, HeaderTitle, Main } from "../styles/BoardArea";
+import { Main } from "../styles/App";
+import { BoardsArea, Header, HeaderTitle } from "../styles/MainArea";
 import Boards from "./Boards";
 import CreateBoard from "./CreateBoard";
 
-function BoardArea() {
+function MainArea() {
   return (
     <Main>
       <Header>
@@ -17,4 +18,4 @@ function BoardArea() {
   );
 }
 
-export default BoardArea;
+export default MainArea;

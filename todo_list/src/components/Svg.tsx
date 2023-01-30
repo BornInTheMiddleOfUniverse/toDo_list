@@ -1,11 +1,5 @@
-import {
-  ArcContainer,
-  ArcSvg,
-  ArcText,
-  WaveContainer,
-  WaveSvg,
-  WaveText,
-} from "../styles/Svg";
+import { WaveContainer, WaveSvg, WaveText } from "../styles/Goals";
+import { ArcContainer, ArcSvg, ArcText } from "../styles/Quotes";
 
 interface SvgProps {
   text: string;

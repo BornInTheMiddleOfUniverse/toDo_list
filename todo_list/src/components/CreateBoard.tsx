@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import { boardsState } from "../atoms";
 import { IForm } from "../interfaces";
-import { Board } from "../styles/CreateBoard";
+import { CreateBoardInputBox } from "../styles/CreateBoard";
 
 function CreateBoard() {
   const { register, handleSubmit, setValue } = useForm<IForm>();
@@ -20,12 +20,12 @@ function CreateBoard() {
   };
 
   return (
-    <Board>
+    <CreateBoardInputBox>
       <form onSubmit={handleSubmit(handleValid)}>
         <input {...register("board")} placeholder="Create new board" />
         <button>+</button>
       </form>
-    </Board>
+    </CreateBoardInputBox>
   );
 }
 

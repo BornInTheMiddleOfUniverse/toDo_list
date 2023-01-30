@@ -1,11 +1,16 @@
 import { atom, selector } from "recoil";
 import { IBoard, IGoal, IToDo } from "./interfaces";
 
+//goal
+export const goalsState = atom({
+  key: "goals",
+  default: { id: 123, goal: "Wake up early at 7:00" },
+});
 //board
 const defaultCategoreis = JSON.stringify([
-  { id: 1, board: "To Do" },
-  { id: 2, board: "Doing" },
-  { id: 3, board: "Done" },
+  { id: 1, board: "Monday" },
+  { id: 2, board: "Tuesday" },
+  { id: 3, board: "Wednesday" },
 ]);
 
 const localStorageBoards: string =
@@ -19,7 +24,7 @@ export const boardsState = atom({
 
 export const boardState = atom<IBoard>({
   key: "board",
-  default: { id: 1, board: "To Do" },
+  default: { id: 1, board: "Monday" },
 });
 
 //todo
