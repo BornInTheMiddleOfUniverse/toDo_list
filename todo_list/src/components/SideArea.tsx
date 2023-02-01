@@ -10,5 +10,4 @@ function SideArea() {
     </Side>
   );
 }
-
 export default SideArea;

@@ -23,7 +23,7 @@ function SubtitleSvg({ text, id, d, rotation }: SvgProps) {
         </WaveContainer>
       ) : (
         <ArcContainer>
-          <ArcSvg className=" w-full overflow-visible ">
+          <ArcSvg>
             <path id={id} fill="none" d={d} />
             <ArcText>
               <textPath href={href}>{text}</textPath>

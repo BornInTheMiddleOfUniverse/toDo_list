@@ -1,14 +1,12 @@
-import Goals from "./components/Goals";
-import Quotes from "./components/Quotes";
 import MainArea from "./components/MainArea";
 import { BigMain } from "./styles/App";
+import SideArea from "./components/SideArea";
 
 function App() {
   return (
     <BigMain>
-      <Goals />
+      <SideArea />
       <MainArea />
-      <Quotes />
     </BigMain>
   );
 }

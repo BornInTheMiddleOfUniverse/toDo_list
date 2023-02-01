@@ -10,7 +10,7 @@ export interface IToDo {
 
 export interface IBoard {
   id: number;
-  board: string;
+  boardTitle: string;
 }
 
 export interface IGoal {

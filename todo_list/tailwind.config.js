@@ -5,6 +5,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       signika: ["Signika", "sans-serif"],
+      waterfall: ["Waterfall", "cursive"],
     },
   },
   plugins: [],

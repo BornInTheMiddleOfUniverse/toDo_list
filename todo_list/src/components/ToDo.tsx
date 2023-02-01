@@ -1,8 +1,9 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { boardsState, toDoState } from "../atoms";
 import { IToDo } from "../interfaces";
+import { BoardBody } from "../styles/Boards";
 
-function ToDo({ text, board, id }: IToDo) {
+function ToDos({ text, board, id }: IToDo) {
   const setToDos = useSetRecoilState(toDoState);
   const boards = useRecoilValue(boardsState);
 
@@ -10,6 +11,7 @@ function ToDo({ text, board, id }: IToDo) {
     const {
       currentTarget: { name },
     } = event;
+    console.log("", event);
 
     setToDos((oldToDos) => {
       const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
@@ -19,22 +21,24 @@ function ToDo({ text, board, id }: IToDo) {
         newToDo,
         ...oldToDos.slice(targetIndex + 1),
       ];
-      localStorage.setItem("USER_WORKS", JSON.stringify(newToDos));
+      localStorage.setItem(board.boardTitle, JSON.stringify(newToDos));
 
       return newToDos;
     });
   };
 
   return (
-    <li>
-      <span>{text}</span>
-      {boards.map((board: any) => (
-        <button key={board.id} name={board.board} onClick={onClick}>
-          {board.board}
-        </button>
-      ))}
-    </li>
+    <BoardBody>
+      <li>
+        <span>{text}</span>
+        {boards.map((board: any) => (
+          <button key={board.id} name={board.board} onClick={onClick}>
+            {board.board}
+          </button>
+        ))}
+      </li>
+    </BoardBody>
   );
 }
 
-export default ToDo;
+export default ToDos;
