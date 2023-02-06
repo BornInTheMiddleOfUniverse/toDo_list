@@ -1,26 +1,23 @@
-import { useRef } from "react";
 import { useForm } from "react-hook-form";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { boardState, toDoState } from "../atoms";
-import { IForm } from "../interfaces";
+import { useSetRecoilState } from "recoil";
+import { toDoState } from "../atoms";
+import { IBoard, IForm } from "../interfaces";
 import { AddToDo } from "../styles/Boards";
 
-function CreateToDo() {
+function CreateToDo({ boardTitle }: IBoard) {
   const { register, handleSubmit, setValue } = useForm<IForm>();
   const setToDos = useSetRecoilState(toDoState);
-  const board = useRecoilValue(boardState);
-
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleValid = ({ toDo }: IForm) => {
     console.log("Adding a toDo", toDo);
+
     setToDos((oldToDos) => {
-      const newToDos = [{ text: toDo, id: Date.now(), board }, ...oldToDos];
-      localStorage.setItem(board.boardTitle, JSON.stringify(newToDos));
+      const newToDos = [{ text: toDo, id: Date.now(), onBoard: boardTitle }, ...oldToDos];
+      localStorage.setItem(boardTitle, JSON.stringify(newToDos));
+      console.log('SETTING TODOS. newToDos:', newToDos);
 
       return newToDos;
     });
-
     setValue("toDo", "");
   };
 
@@ -28,7 +25,6 @@ function CreateToDo() {
     <AddToDo>
       <form onSubmit={handleSubmit(handleValid)}>
         <input
-          ref={inputRef}
           {...register("toDo", {
             required: "Please write a To Do",
           })}

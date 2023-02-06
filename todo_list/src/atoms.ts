@@ -1,17 +1,14 @@
 import { atom, selector } from "recoil";
 import { IBoard, IGoal, IToDo } from "./interfaces";
 
-//goal
-export const goalsState = atom({
-  key: "goals",
-  default: { id: 123, goal: "Wake up early at 7:00" },
-});
+
+
 
 //board
 const defaultCategoreis = JSON.stringify([
-  { id: 1, boardTitle: "Monday" },
-  { id: 2, boardTitle: "Tuesday" },
-  { id: 3, boardTitle: "Wednesday" },
+  { id: 1, boardTitle: "Monday", toDos: [] },
+  { id: 2, boardTitle: "Tuesday", toDos: [] },
+  { id: 3, boardTitle: "Wednesday", toDos: [] },
 ]);
 
 const localStorageBoards: string =
@@ -25,8 +22,9 @@ export const boardsState = atom({
 
 export const boardState = atom<IBoard>({
   key: "board",
-  default: { id: 1, boardTitle: "Monday" },
+  default: { id: 1, boardTitle: "Monday", toDos: []},
 });
+
 
 //todo
 const BOARD_TITLE = "BOARD_TITLE";
@@ -37,18 +35,25 @@ export const toDoState = atom<IToDo[]>({
   key: "toDo",
   default: parsedLocalStorageToDos,
 });
+
 export const toDoSelector = selector({
   key: "toDoSelector",
   get: ({ get }) => {
     const toDos = get(toDoState);
     const board = get(boardState);
-    return toDos.filter((toDo) => toDo.board === board);
+    return toDos.filter((toDo) => toDo.onBoard === String(board));
   },
 });
+
 
 //goal
 const localStorageGoals: string = localStorage.getItem("GOALS") || "[]";
 const parsedLocalStorageGoals = JSON.parse(localStorageGoals);
+
+export const goalsState = atom({
+  key: "goals",
+  default: { id: 123, goal: "Wake up early at 7:00" },
+});
 
 export const GoalState = atom<IGoal[]>({
   key: "goal",

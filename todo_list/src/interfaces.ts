@@ -3,17 +3,31 @@ export interface IForm {
 }
 
 export interface IToDo {
-  text: string;
   id: number;
-  board: IBoard;
+  onBoard: IBoard["boardTitle"];
+  text: string;
 }
 
 export interface IBoard {
   id: number;
   boardTitle: string;
+  toDos: IToDo[];
 }
 
 export interface IGoal {
   id: number;
   text: string;
+}
+
+export interface IDraggableCardProps {
+  toDoId: number;
+  toDoText: string;
+  index: number;
+}
+
+export interface SvgProps {
+  text: string;
+  id: string;
+  d: string;
+  rotation?: boolean;
 }
