@@ -1,5 +1,5 @@
-import { Main } from "../styles/App";
-import { BoardsArea, Header, HeaderTitle } from "../styles/MainArea";
+import { Main } from "../../../styles/App";
+import { BoardsArea, Header, HeaderTitle } from "../../../styles/MainArea";
 import Boards from "./Boards";
 import CreateBoard from "./CreateBoard";
 

@@ -2,16 +2,24 @@ export interface IForm {
   [key: string]: string;
 }
 
+
 export interface IToDo {
   id: number;
-  onBoard: IBoard["boardTitle"];
   text: string;
 }
 
-export interface IBoard {
-  id: number;
-  boardTitle: string;
+export interface IDraggableToDoProps {
+  toDo: IToDo;
+  index: number
+}
+
+export interface IBoardProps {
   toDos: IToDo[];
+  boardTitle: string;
+}
+
+export interface IToDoState {
+  [key: string]: IToDo[];
 }
 
 export interface IGoal {
@@ -19,11 +27,7 @@ export interface IGoal {
   text: string;
 }
 
-export interface IDraggableCardProps {
-  toDoId: number;
-  toDoText: string;
-  index: number;
-}
+
 
 export interface SvgProps {
   text: string;

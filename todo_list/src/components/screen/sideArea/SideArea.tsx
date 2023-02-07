@@ -1,4 +1,4 @@
-import { Side } from "../styles/App";
+import { Side } from "../../../styles/App";
 import Goals from "./Goals";
 import Quotes from "./Quotes";
 

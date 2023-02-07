@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { goalsState, GoalState } from "../atoms";
-import { IForm } from "../interfaces";
+import { GoalState } from "../../../atoms";
+
+import { IForm } from "../../../interfaces";
 import {
   GoalsArea,
   GoalsBody,
@@ -9,8 +10,8 @@ import {
   GoalsInput,
   GoalsModal,
   GoalsModalBody,
-} from "../styles/Goals";
-import SubtitleSvg from "./Svg";
+} from "../../../styles/Goals";
+import SubtitleSvg from "../../Svg";
 
 function Goals() {
   const { register, handleSubmit, setValue } = useForm<IForm>();

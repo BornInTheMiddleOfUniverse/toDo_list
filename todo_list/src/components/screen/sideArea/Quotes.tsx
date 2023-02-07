@@ -1,5 +1,5 @@
-import { Author, Quote, QuotesArea, QuotesBody } from "../styles/Quotes";
-import SubtitleSvg from "./Svg";
+import { Author, Quote, QuotesArea, QuotesBody } from "../../../styles/Quotes";
+import SubtitleSvg from "../../Svg";
 
 function Quotes() {
   return (

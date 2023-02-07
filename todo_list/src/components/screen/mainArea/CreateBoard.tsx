@@ -1,19 +1,24 @@
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
-import { boardsState } from "../atoms";
-import { IForm } from "../interfaces";
-import { CreateBoardInputBox } from "../styles/MainArea";
+import { toDoState } from "../../../atoms";
+import { IForm } from "../../../interfaces";
+import { CreateBoardInputBox } from "../../../styles/MainArea";
 
 function CreateBoard() {
   const { register, handleSubmit, setValue } = useForm<IForm>();
-  const setBoards = useSetRecoilState(boardsState);
+  const setToDos = useSetRecoilState(toDoState);
 
   const handleValid = ({ board }: IForm) => {
     console.log("Adding a Board", board);
-    setBoards((oldBoards: any) => {
-      const newBoards = [{ id: Date.now(), boardTitle: board }, ...oldBoards];
-      localStorage.setItem("BOARD_TITLES", JSON.stringify(newBoards));
-      return newBoards;
+
+    setToDos((oldToDos: any) => {
+      const newToDos = {
+        //should board in the [board] be String?
+        ...oldToDos, [board] : []
+      };
+      localStorage.setItem("BOARDS", JSON.stringify(newToDos));
+
+      return newToDos;
     });
 
     setValue("board", "");
