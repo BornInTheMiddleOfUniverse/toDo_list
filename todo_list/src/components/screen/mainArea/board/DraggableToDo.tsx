@@ -3,15 +3,15 @@ import { Draggable } from "react-beautiful-dnd";
 import { IDraggableToDoProps, IToDo } from "../../../../interfaces";
 import { Card } from "../../../../styles/ToDos";
 
-function DraggableToDo({ toDo, index }: IDraggableToDoProps) {
+function DraggableToDo({ toDoText, toDoId,index }: IDraggableToDoProps) {
   return (
-    <Draggable draggableId={toDo.id + ""} index={index}>
+    <Draggable draggableId={toDoId + ""} index={index}>
       {(magic, snapshot) => (
         <div
           ref={magic.innerRef}
           {...magic.draggableProps}
         >
-          {toDo.text}
+          {toDoText}
         </div>
       )}
     </Draggable>

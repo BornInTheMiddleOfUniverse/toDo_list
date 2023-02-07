@@ -9,8 +9,9 @@ export interface IToDo {
 }
 
 export interface IDraggableToDoProps {
-  toDo: IToDo;
-  index: number
+  toDoText: IToDo["text"];
+  toDoId: IToDo["id"];
+  index: number;
 }
 
 export interface IBoardProps {

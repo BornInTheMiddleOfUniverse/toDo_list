@@ -2,8 +2,8 @@ import { Droppable } from "react-beautiful-dnd";
 import { useRecoilValue } from "recoil";
 import { toDoState } from "../../../atoms";
 import { Board, BoardBody, BoardHeader, BoardTitle } from "../../../styles/Boards";
-import { DraggableToDo } from "../../../styles/ToDos";
 import CreateToDo from "./board/CreateToDo";
+import DraggableToDo from "./board/DraggableToDo";
 
 function Boards() {
   const toDos = useRecoilValue(toDoState);
@@ -24,7 +24,8 @@ function Boards() {
                 {(magic, info) => (
                   <div ref={magic.innerRef} {...magic.droppableProps}> 
                     {toDos[boardTitle].map((toDo, index) => (
-                        <DraggableToDo key={toDo.id} toDo={toDo} index={index}/>          
+                      <DraggableToDo key={toDo.id} toDoId={toDo.id} toDoText={toDo.text} index={index}/>   
+                               
                     ))}
                   </div>
                 )}
