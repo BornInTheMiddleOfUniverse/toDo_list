@@ -7,12 +7,13 @@ function DraggableToDo({ toDoText, toDoId,index }: IDraggableToDoProps) {
   return (
     <Draggable draggableId={toDoId + ""} index={index}>
       {(magic, snapshot) => (
-        <div
+        <Card
           ref={magic.innerRef}
           {...magic.draggableProps}
+          {...magic.dragHandleProps}
         >
           {toDoText}
-        </div>
+        </Card>
       )}
     </Draggable>
   );

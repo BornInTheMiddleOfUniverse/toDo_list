@@ -28,8 +28,6 @@ export interface IGoal {
   text: string;
 }
 
-
-
 export interface SvgProps {
   text: string;
   id: string;
