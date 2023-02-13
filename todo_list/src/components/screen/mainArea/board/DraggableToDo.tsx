@@ -1,19 +1,19 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { IDraggableToDoProps, IToDo } from "../../../../interfaces";
-import { Card } from "../../../../styles/ToDos";
+import { ToDoCard } from "../../../../styles/ToDos";
 
 function DraggableToDo({ toDoText, toDoId,index }: IDraggableToDoProps) {
   return (
     <Draggable draggableId={toDoId + ""} index={index}>
       {(magic, snapshot) => (
-        <Card
+        <ToDoCard
           ref={magic.innerRef}
           {...magic.draggableProps}
           {...magic.dragHandleProps}
         >
           {toDoText}
-        </Card>
+        </ToDoCard>
       )}
     </Draggable>
   );

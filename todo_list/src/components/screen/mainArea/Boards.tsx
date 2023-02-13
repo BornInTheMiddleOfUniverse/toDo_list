@@ -1,46 +1,25 @@
 import { Droppable } from "react-beautiful-dnd";
 import { useRecoilValue } from "recoil";
 import { toDoState } from "../../../atoms";
-import { Board, BoardBody, BoardHeader, BoardTitle } from "../../../styles/Boards";
-import { Cards } from "../../../styles/ToDos";
-import CreateToDo from "./board/CreateToDo";
-import DraggableToDo from "./board/DraggableToDo";
 
+import { DroppableBoardsArea } from "../../../styles/MainArea";
+import DraggableBoard from "./board/DraggableBoard";
 
 function Boards() {
   const toDos = useRecoilValue(toDoState);
-  const onClick = () => {
-    console.log("toDos", toDos);
-  };
 
   return (
     <>
-      {Object.keys(toDos).map((boardTitle) => (
-        <Board key={boardTitle}>
-
-          <BoardHeader onClick={onClick}>
-            <BoardTitle>{boardTitle}</BoardTitle>
-            <CreateToDo boardTitle={boardTitle} toDos={toDos[boardTitle]} />
-          </BoardHeader>
-          
-          <Droppable droppableId={boardTitle}>
-                {(magic, info) => (
-                  <BoardBody ref={magic.innerRef} {...magic.droppableProps}> 
-                  <Cards>
-                    {toDos[boardTitle].map((toDo, index) => (
-                        <DraggableToDo key={toDo.id} toDoId={toDo.id} toDoText={toDo.text} index={index}/>                                  
-                      ))}
-                  </Cards>
-                    
-                    {magic.placeholder}
-
-                  </BoardBody>
-                )}
-
-          </Droppable>
-
-        </Board>
-      ))}
+      <Droppable droppableId="BoardsArea">
+        {(magic, info) => (
+          <DroppableBoardsArea ref={magic.innerRef} {...magic.droppableProps}>
+            {Object.keys(toDos).map((boardTitle, index) => (
+              <DraggableBoard key={boardTitle} boardTitle={boardTitle} index={index} />
+            ))}
+            {magic.placeholder}
+          </DroppableBoardsArea>
+        )}
+      </Droppable>
     </>
   );
 }

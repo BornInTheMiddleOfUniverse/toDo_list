@@ -14,6 +14,11 @@ export interface IDraggableToDoProps {
   index: number;
 }
 
+export interface IDraggableBoardProps {
+  boardTitle: string;
+  index: number;
+}
+
 export interface IBoardProps {
   toDos: IToDo[];
   boardTitle: string;
