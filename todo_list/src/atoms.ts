@@ -19,12 +19,7 @@ export const toDoState = atom<IToDoState>({
 const localStorageGoals: string = localStorage.getItem("GOALS") || "[]";
 const parsedLocalStorageGoals = JSON.parse(localStorageGoals);
 
-export const goalsState = atom({
-  key: "goals",
-  default: { id: 123, goal: "Wake up early at 7:00" },
-});
-
-export const GoalState = atom<IGoal[]>({
+export const goalState = atom<IGoal[]>({
   key: "goal",
   default: parsedLocalStorageGoals,
 });

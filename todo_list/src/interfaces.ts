@@ -2,7 +2,6 @@ export interface IForm {
   [key: string]: string;
 }
 
-
 export interface IToDo {
   id: number;
   text: string;
@@ -22,6 +21,12 @@ export interface IDraggableBoardProps {
 export interface IBoardProps {
   toDos: IToDo[];
   boardTitle: string;
+}
+
+//any
+export interface IBoardCardProps {
+  isDraggingOver: any;
+  isDraggingFromThisWith: any;
 }
 
 export interface IToDoState {

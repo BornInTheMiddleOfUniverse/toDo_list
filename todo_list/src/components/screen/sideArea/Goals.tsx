@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { GoalState } from "../../../atoms";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { goalState } from "../../../atoms";
 
 import { IForm } from "../../../interfaces";
 import {
+  Goal,
   GoalsArea,
   GoalsBody,
   GoalsForm,
   GoalsInput,
+  GoalsList,
   GoalsModal,
   GoalsModalBody,
 } from "../../../styles/Goals";
@@ -15,7 +17,7 @@ import SubtitleSvg from "../../Svg";
 
 function Goals() {
   const { register, handleSubmit, setValue } = useForm<IForm>();
-  const setGoals = useSetRecoilState(GoalState);
+  const [goals, setGoals] = useRecoilState(goalState);
 
   const handleValid = ({ goal }: IForm) => {
     console.log("Adding a Goal", goal);
@@ -46,8 +48,14 @@ function Goals() {
               placeholder="Write this week's goal here"
             />
           </GoalsForm>
+          <GoalsList>
+            {goals.map((goal) => (
+              <Goal key={goal.id}>{goal.text}</Goal>
+            ))}
+          </GoalsList>
         </GoalsBody>
       </GoalsArea>
+
       <GoalsModal>
         <GoalsModalBody></GoalsModalBody>
       </GoalsModal>

@@ -2,27 +2,40 @@ import React from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { useRecoilValue } from "recoil";
 import { toDoState } from "../../../../atoms";
-import { IDraggableBoardProps } from "../../../../interfaces";
+import { IBoardCardProps, IDraggableBoardProps } from "../../../../interfaces";
 import {
-  BoardBody,
   BoardCard,
+  BoardBody,
   BoardHeader,
   BoardTitle,
 } from "../../../../styles/Boards";
 import { ToDoCards } from "../../../../styles/ToDos";
 import CreateToDo from "./CreateToDo";
 import DraggableToDo from "./DraggableToDo";
+// import styled from "styled-components";
+
+// const BoardCard = styled.div<IBoardCardProps>`
+//   background-color: ${(props) =>
+//     props.isDraggingOver
+//       ? "#dfe6e9"
+//       : props.isDraggingFromThis
+//       ? "#b2bec3"
+//       : "transparent"};
+//   flex-grow: 1;
+//   transition: background-color 0.3s ease-in-out;
+//   padding: 20px;
+// `;
+
 
 function DraggableBoard({ boardTitle, index }: IDraggableBoardProps) {
   const toDos = useRecoilValue(toDoState);
   return (
     <Draggable draggableId={boardTitle} index={index}>
-      {(magic, snapshot) => (
+      {(magic, info) => (
         <BoardCard
           ref={magic.innerRef}
           {...magic.draggableProps}
           {...magic.dragHandleProps}
-
         >
           <BoardHeader>
             <BoardTitle>{boardTitle}</BoardTitle>
@@ -41,7 +54,6 @@ function DraggableBoard({ boardTitle, index }: IDraggableBoardProps) {
                     />
                   ))}
                 </ToDoCards>
-                {magic.placeholder}
               </BoardBody>
             )}
           </Droppable>
