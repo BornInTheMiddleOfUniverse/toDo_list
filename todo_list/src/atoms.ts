@@ -1,50 +1,43 @@
-import { atom, selector } from "recoil";
-import { ICategory, IGoal, IToDo } from "./interfaces";
+import { atom } from "recoil";
+import { IGoal, IToDoState } from "./interfaces";
 
-//category
-const defaultCategoreis = JSON.stringify([
-  { id: 1, category: "To Do" },
-  { id: 2, category: "Doing" },
-  { id: 3, category: "Done" },
-]);
-
-const localStorageCategories: string =
-  localStorage.getItem("CATEGORY_TITLES") || defaultCategoreis;
-const parsedLocalStorageCategories = JSON.parse(localStorageCategories);
-
-export const CategoriesState = atom({
-  key: "categories",
-  default: parsedLocalStorageCategories,
+const defaultLocalStroageTodos = JSON.stringify({
+  Monday: [],
+  Tuesday: [],
+  Wednesday: [],
 });
-
-export const categoryState = atom<ICategory>({
-  key: "category",
-  default: { id: 1, category: "To Do" },
-});
-
-//todo
-const USER_WORKS = "USER_WORKS";
-const localStorageToDos: string = localStorage.getItem(USER_WORKS) || "[]";
+const localStorageToDos =
+  localStorage.getItem("BOARDS") || defaultLocalStroageTodos;
 const parsedLocalStorageToDos = JSON.parse(localStorageToDos);
 
-export const toDoState = atom<IToDo[]>({
+export const toDoState = atom<IToDoState>({
   key: "toDo",
   default: parsedLocalStorageToDos,
-});
-export const toDoSelector = selector({
-  key: "toDoSelector",
-  get: ({ get }) => {
-    const toDos = get(toDoState);
-    const category = get(categoryState);
-    return toDos.filter((toDo) => toDo.category === category);
-  },
 });
 
 //goal
 const localStorageGoals: string = localStorage.getItem("GOALS") || "[]";
-const parsedLocalStorageGoals = JSON.parse(localStorageGoals);
+export const parsedLocalStorageGoals = JSON.parse(localStorageGoals);
 
-export const GoalState = atom<IGoal[]>({
+export const goalState = atom<IGoal[]>({
   key: "goal",
   default: parsedLocalStorageGoals,
+});
+
+export const modalState = atom<boolean>({
+  key: "isModal",
+  default: false,
+});
+export const isGoalInStorageState = atom<boolean>({
+  key: "isGoalInStorage",
+  default: parsedLocalStorageGoals.length > 0 ? true : false,
+});
+
+//quote
+export const quoteState = atom({
+  key: "quote",
+  default: {
+    content: "",
+    author: "",
+  },
 });
