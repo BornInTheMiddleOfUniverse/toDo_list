@@ -3,7 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { IDraggableToDoProps, IToDo } from "../../../../interfaces";
 import { ToDoCard } from "../../../../styles/ToDos";
 
-function DraggableToDo({ toDoText, toDoId,index }: IDraggableToDoProps) {
+function DraggableToDo({ toDoText, toDoId, index }: IDraggableToDoProps) {
   return (
     <Draggable draggableId={toDoId + ""} index={index}>
       {(magic, snapshot) => (

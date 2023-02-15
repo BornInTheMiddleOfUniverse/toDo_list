@@ -10,8 +10,8 @@ import {
   BoardTitle,
 } from "../../../../styles/Boards";
 import { ToDoCards } from "../../../../styles/ToDos";
+import DraggableCard from "../../../DraggableCard";
 import CreateToDo from "./CreateToDo";
-import DraggableToDo from "./DraggableToDo";
 // import styled from "styled-components";
 
 // const BoardCard = styled.div<IBoardCardProps>`
@@ -25,7 +25,6 @@ import DraggableToDo from "./DraggableToDo";
 //   transition: background-color 0.3s ease-in-out;
 //   padding: 20px;
 // `;
-
 
 function DraggableBoard({ boardTitle, index }: IDraggableBoardProps) {
   const toDos = useRecoilValue(toDoState);
@@ -43,13 +42,13 @@ function DraggableBoard({ boardTitle, index }: IDraggableBoardProps) {
           </BoardHeader>
           <Droppable droppableId={boardTitle}>
             {(magic, info) => (
-              <BoardBody ref={magic.innerRef} {...magic.droppableProps} >
+              <BoardBody ref={magic.innerRef} {...magic.droppableProps}>
                 <ToDoCards>
                   {toDos[boardTitle].map((toDo, index) => (
-                    <DraggableToDo
+                    <DraggableCard
                       key={toDo.id}
-                      toDoId={toDo.id}
-                      toDoText={toDo.text}
+                      id={toDo.id}
+                      text={toDo.text}
                       index={index}
                     />
                   ))}

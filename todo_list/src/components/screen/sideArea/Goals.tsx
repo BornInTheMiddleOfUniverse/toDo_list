@@ -1,6 +1,12 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { goalState } from "../../../atoms";
+import {
+  goalModalState,
+  goalState,
+  isGoalInStorageState,
+  parsedLocalStorageGoals,
+} from "../../../atoms";
 
 import { IForm } from "../../../interfaces";
 import {
@@ -10,25 +16,26 @@ import {
   GoalsForm,
   GoalsInput,
   GoalsList,
-  GoalsModal,
-  GoalsModalBody,
+  OpenGoalModal,
 } from "../../../styles/Goals";
 import SubtitleSvg from "../../Svg";
+import GoalsModal from "./GoalsModal";
 
 function Goals() {
   const { register, handleSubmit, setValue } = useForm<IForm>();
   const [goals, setGoals] = useRecoilState(goalState);
+  const [goalModal, setGoalModal] = useRecoilState(goalModalState);
 
-  const handleValid = ({ goal }: IForm) => {
-    console.log("Adding a Goal", goal);
-    setGoals((oldGoals) => {
-      const newGoals = [{ text: goal, id: Date.now() }, ...oldGoals];
-      localStorage.setItem("GOALS", JSON.stringify(newGoals));
-      return newGoals;
-    });
-
-    setValue("goal", "");
+  const onClickAddGoal = () => {
+    setGoalModal(true);
   };
+  useEffect(() => {
+    if (goals.length > 0) {
+      console.log("something");
+    } else {
+      console.log("nothing", goals.length);
+    }
+  }, [goals]);
 
   return (
     <>
@@ -40,25 +47,30 @@ function Goals() {
           rotation
         />
         <GoalsBody>
-          <GoalsForm onSubmit={handleSubmit(handleValid)}>
-            <GoalsInput
-              {...register("goal", {
-                required: "Please write a goal.",
-              })}
-              placeholder="Write this week's goal here"
-            />
-          </GoalsForm>
+          {goals.length == 0 && (
+            <GoalsForm>
+              <GoalsInput
+                onClick={onClickAddGoal}
+                {...register("goal", {
+                  required: "Please write a goal.",
+                })}
+                placeholder="Write this week's goal here"
+              />
+            </GoalsForm>
+          )}
+
           <GoalsList>
             {goals.map((goal) => (
               <Goal key={goal.id}>{goal.text}</Goal>
             ))}
           </GoalsList>
         </GoalsBody>
+        {goals.length != 0 && (
+          <OpenGoalModal onClick={onClickAddGoal}>+</OpenGoalModal>
+        )}
       </GoalsArea>
 
-      <GoalsModal>
-        <GoalsModalBody></GoalsModalBody>
-      </GoalsModal>
+      <GoalsModal />
     </>
   );
 }

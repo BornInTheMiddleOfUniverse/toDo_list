@@ -13,6 +13,12 @@ export interface IDraggableToDoProps {
   index: number;
 }
 
+export interface IDraggableCardProps {
+  text: string;
+  id: number;
+  index: number;
+}
+
 export interface IDraggableBoardProps {
   boardTitle: string;
   index: number;
