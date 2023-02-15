@@ -32,3 +32,12 @@ export const isGoalInStorageState = atom<boolean>({
   key: "isGoalInStorage",
   default: parsedLocalStorageGoals.length > 0 ? true : false,
 });
+
+//quote
+export const quoteState = atom({
+  key: "quote",
+  default: {
+    content: "",
+    author: "",
+  },
+});
