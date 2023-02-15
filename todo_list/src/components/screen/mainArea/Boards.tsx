@@ -14,7 +14,11 @@ function Boards() {
         {(magic, info) => (
           <DroppableBoardsArea ref={magic.innerRef} {...magic.droppableProps}>
             {Object.keys(toDos).map((boardTitle, index) => (
-              <DraggableBoard key={boardTitle} boardTitle={boardTitle} index={index} />
+              <DraggableBoard
+                key={boardTitle}
+                boardTitle={boardTitle}
+                index={index}
+              />
             ))}
             {magic.placeholder}
           </DroppableBoardsArea>

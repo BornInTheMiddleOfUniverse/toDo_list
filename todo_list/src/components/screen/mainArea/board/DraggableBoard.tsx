@@ -9,7 +9,7 @@ import {
   BoardHeader,
   BoardTitle,
 } from "../../../../styles/Boards";
-import { ToDoCards } from "../../../../styles/ToDos";
+import { Cards } from "../../../../styles/DraggableCards";
 import DraggableCard from "../../../DraggableCard";
 import CreateToDo from "./CreateToDo";
 // import styled from "styled-components";
@@ -43,16 +43,18 @@ function DraggableBoard({ boardTitle, index }: IDraggableBoardProps) {
           <Droppable droppableId={boardTitle}>
             {(magic, info) => (
               <BoardBody ref={magic.innerRef} {...magic.droppableProps}>
-                <ToDoCards>
+                <Cards>
                   {toDos[boardTitle].map((toDo, index) => (
                     <DraggableCard
+                      area="todo"
                       key={toDo.id}
                       id={toDo.id}
                       text={toDo.text}
                       index={index}
+                      boardTitle={boardTitle}
                     />
                   ))}
-                </ToDoCards>
+                </Cards>
               </BoardBody>
             )}
           </Droppable>

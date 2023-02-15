@@ -10,7 +10,7 @@ function Quotes() {
     async function updateQuote() {
       try {
         const response = await fetch(
-          "https://api.quotable.io/random?maxLength=70"
+          "https://api.quotable.io/random?maxLength=60"
         );
         const { statusCode, statusMessage, ...data } = await response.json();
         setData(data);

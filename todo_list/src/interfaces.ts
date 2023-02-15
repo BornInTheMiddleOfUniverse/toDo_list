@@ -7,16 +7,12 @@ export interface IToDo {
   text: string;
 }
 
-export interface IDraggableToDoProps {
-  toDoText: IToDo["text"];
-  toDoId: IToDo["id"];
-  index: number;
-}
-
 export interface IDraggableCardProps {
+  area: string;
   text: string;
   id: number;
   index: number;
+  boardTitle?: string;
 }
 
 export interface IDraggableBoardProps {
@@ -49,4 +45,7 @@ export interface SvgProps {
   id: string;
   d: string;
   rotation?: boolean;
+}
+export interface IModalProps {
+  area: string;
 }

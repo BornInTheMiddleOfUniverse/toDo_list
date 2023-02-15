@@ -24,8 +24,8 @@ export const goalState = atom<IGoal[]>({
   default: parsedLocalStorageGoals,
 });
 
-export const goalModalState = atom<boolean>({
-  key: "goalModal",
+export const modalState = atom<boolean>({
+  key: "isModal",
   default: false,
 });
 export const isGoalInStorageState = atom<boolean>({

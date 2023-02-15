@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
+import ModalArea from "../../Modal";
 import { Droppable } from "react-beautiful-dnd";
-import { useForm } from "react-hook-form";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { goalModalState, goalState } from "../../../atoms";
-
-import { IForm } from "../../../interfaces";
+import { modalState, goalState } from "../../../atoms";
 import {
   AddGoal,
   GoalsArea,
@@ -12,15 +9,14 @@ import {
   GoalsForm,
   GoalsGrid,
   GoalsList,
-  OpenGoalModal,
 } from "../../../styles/Goals";
 import DraggableCard from "../../DraggableCard";
 import SubtitleSvg from "../../Svg";
-import GoalsModal from "./GoalsModal";
+import { OpenGoalModalBtn } from "../../../styles/Modal";
 
 function Goals() {
-  const [goals] = useRecoilState(goalState);
-  const setGoalModal = useSetRecoilState(goalModalState);
+  const goals = useRecoilValue(goalState);
+  const setGoalModal = useSetRecoilState(modalState);
 
   const onClickAddGoal = () => {
     setGoalModal(true);
@@ -49,6 +45,7 @@ function Goals() {
               <GoalsList>
                 {goals.map((goal, index) => (
                   <DraggableCard
+                    area="goal"
                     key={goal.id}
                     text={goal.text}
                     id={goal.id}
@@ -61,11 +58,11 @@ function Goals() {
         </Droppable>
 
         {goals.length != 0 && (
-          <OpenGoalModal onClick={onClickAddGoal}>+</OpenGoalModal>
+          <OpenGoalModalBtn onClick={onClickAddGoal}>+</OpenGoalModalBtn>
         )}
       </GoalsArea>
 
-      <GoalsModal />
+      <ModalArea area="goal" />
     </GoalsGrid>
   );
 }
